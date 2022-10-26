@@ -4,6 +4,8 @@
 
 ![NPM](https://img.shields.io/npm/l/create-global-context)
 
+**BETA version, still in DEVELOPMENT**
+
 ## The why?
 
 Wanting to have react components in sync with each other could be a little overwhelming sometimes. We could lift up the state and drift the state down the component tree recursively through component props till we get the state down to where we desire `prop-drilling`.
@@ -34,12 +36,11 @@ import { createGlobalContext } from 'create-global-context'
 
 ##### The second step is to create a global context
 
-> createGlobalContext takes one argument; which is the initial state, or the shape of the state
+> createGlobalContext takes one argument; which is the initial state, or the shape of the state.
 > createGlobalContext returns a Provider component wrapper which wraps around components which will be using the context, and useStore hook to get and modify the state.
 
 ```
 const { Provider, useStore } = createGlobalContext({ name: 'Context', id: 1, count: 1 })
-
 ```
 
 ##### The third step is to use the Provider
@@ -57,4 +58,46 @@ function App() {
     </Provider>
   )
 }
+```
+
+#### Finally step four; we use the useStore.
+
+> in order to get the store or make changes to the store we will be using useStore hook returned by the createGlobalContext fn in `step 2`.
+> useStore hook returns a tuple, index 0 is the state itself, index 1 is the setter function.
+
+without the setter function
+
+```
+const NameComponent = () => {
+  const [state] = useStore()
+  return <div>{state.name}</div>
+}
+```
+
+with setter function
+
+```
+const Count = () => {
+  const [state, setStore] = useStore()
+  return (
+    <div>
+      <p>{state.count}</p>
+      <button onClick={() => setStore({ count: state.count + 1 })}>ADD</button>
+    </div>
+  )
+}
+```
+
+The setStore function returned by useStore hook can be used in `two` ways. First way to pas in the object with what you want to change or update and second way is to pass in a callback function which takes the current state as the first argument. Very similar behavior to useState hook.
+
+**First Method**
+
+```
+<button onClick={() => setStore({ count: state.count + 1 })}>ADD</button>
+```
+
+**Second Method**
+
+```
+<button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
 ```
