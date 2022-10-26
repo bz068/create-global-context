@@ -1,6 +1,6 @@
 {
   "name": "create-global-context",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react global context",
   "scripts": {
     "build:rollup": "rollup -c",
@@ -39,5 +39,13 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {}
+  "dependencies": {},
+  "repository": "https://github.com/bz068/create-global-context",
+  "keywords": [
+    "global-context",
+    "react-global-context",
+    "global state",
+    "react js",
+    "create-global-context"
+  ]
 }
