@@ -102,7 +102,7 @@ The setStore function returned by useStore hook can be used in `two` ways. First
 <button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
 ```
 
-## Avoiding unnecessary re-render - Selectors
+## Avoiding unnecessary re-renders - Selectors
 
 In order to avoid the unnecessary re-renders there is one more step to follow. Quite Simply pass in a `callback` function to the `useStore` hook to get what we want from the store instead of the whole store state itself, which will cause a re-render and we do not want that.
 By using `selectors` the component will only render if that the piece of state changes to which that specific component is being subscribed to.
