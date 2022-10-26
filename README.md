@@ -137,3 +137,5 @@ const Count = () => {
 [JavaScript Example - CodeSandBox](https://codesandbox.io/s/blue-rgb-9h1zmx)
 
 [TypeScript Example - CodeSandBox](https://codesandbox.io/s/peaceful-noyce-0ddvlh)
+
+[Testing Docs](docs/test.md)
