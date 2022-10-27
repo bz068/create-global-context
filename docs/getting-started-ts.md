@@ -21,7 +21,7 @@ const { Provider, useStore } = createGlobalContext({
 )
 ```
 
-> ** But for extra safe type checking we can pass the shape of state as a generic (\<SATE>) to `createGlobalContext` function. **
+> ** But for extra safe type checking we can pass the shape of state as a generic (\<STATE>) to `createGlobalContext` function. **
 
 First lets make an interface to showcase the shape of state.
 
