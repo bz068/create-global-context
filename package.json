@@ -5,17 +5,11 @@
   "scripts": {
     "build:rollup": "rollup -c",
     "type": "tsc --noEmit",
-    "build": "npm-run-all -s type build:rollup",
-    "test": "jest --verbose ./tests  --watch"
+    "build": "npm-run-all -s type build:rollup"
   },
   "author": "Baghdad Zazai",
   "license": "MIT",
   "devDependencies": {
-    "@babel/preset-env": "^7.19.4",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.18.6",
-    "@jest/globals": "^29.2.2",
-    "@rollup/plugin-babel": "^6.0.2",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
@@ -32,9 +26,12 @@
     "react-dom": "^18.2.0",
     "rollup": "^2.60.0",
     "rollup-plugin-dts": "^4.0.1",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "^6.0.2",
+    "rollup-plugin-typescript2": "^0.34.1"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -42,6 +39,7 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
+  "dependencies": {},
   "repository": "https://github.com/bz068/create-global-context",
   "keywords": [
     "global-context",
