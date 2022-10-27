@@ -5,7 +5,8 @@
   "scripts": {
     "build:rollup": "rollup -c",
     "type": "tsc --noEmit",
-    "build": "npm-run-all -s type build:rollup"
+    "build": "npm-run-all -s type build:rollup",
+    "test": "jest --verbose ./tests  --watch"
   },
   "author": "Baghdad Zazai",
   "license": "MIT",
