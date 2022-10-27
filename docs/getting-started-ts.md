@@ -36,7 +36,7 @@ interface IState {
 Then we simply pass the interface to `createGlobalContext`.
 
 ```
-const { Provider, useStore } = createGlobalContext\<IState>({
+const { Provider, useStore } = createGlobalContext<IState>({
     name: "Context",
     id: 1,
     count: 1
