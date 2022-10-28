@@ -34,8 +34,6 @@ yarn add create-global-context
 
 ### Usage
 
-##### The first step is to import `createGlobalContext`
-
 ```
 import { createGlobalContext } from 'create-global-context'
 ```
