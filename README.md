@@ -26,6 +26,12 @@ npm i create-global-context
 npm install create-global-context
 ```
 
+or
+
+```
+yarn add create-global-context
+```
+
 ### Usage
 
 ##### The first step is to import `createGlobalContext`
