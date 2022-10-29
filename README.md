@@ -5,6 +5,7 @@
 ![NPM](https://img.shields.io/npm/l/create-global-context)
 
 **BETA version, still in DEVELOPMENT**
+**Now only working with React v18**
 
 ## The why?
 
