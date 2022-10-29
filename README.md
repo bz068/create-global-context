@@ -4,6 +4,8 @@
 
 ![NPM](https://img.shields.io/npm/l/create-global-context)
 
+**Compatible with React v17 and above**
+
 ## The why?
 
 Wanting to have react components in sync with each other could be a little overwhelming sometimes. We could lift up the state and drift the state down the component tree recursively through component props till we get the state down to where we desire `prop-drilling`.
