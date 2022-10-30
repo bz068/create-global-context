@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useSyncExternalStore } from 'react';
+import React, { createContext, useContext } from 'react';
+import { useSyncExternalStore } from 'use-sync-external-store/shim';
 import { PublishOverloads } from './createStore';
 import { useStoreData, useStoreDataReturnType } from './useStoreData';
 
