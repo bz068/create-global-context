@@ -122,3 +122,39 @@ describe("name", () => {
   });
 });
 ```
+
+## The above test cases would look something like this for `Enzyme`
+
+```
+import Enzyme, { mount } from "enzyme";
+import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { NameComponent, Provider, Count } from "./App";
+
+Enzyme.configure({ adapter: new Adapter() });
+
+describe("name", () => {
+  const setUp = (state, Component) =>
+    mount(
+      <Provider initialState={state}>
+        <Component />
+      </Provider>
+    );
+
+  it("Name should match value in context", async () => {
+    const wrapper = setUp({ name: "Context", id: 2 }, NameComponent);
+    const div = wrapper.find("div");
+    expect(div.text()).toBe("Context");
+  });
+
+  it("Count should update in the context", async () => {
+    const wrapper = setUp({ name: "Context", count: 1 }, Count);
+    const p = wrapper.find("p");
+    expect(p.text()).toBe("1");
+    wrapper.find("button").props().onClick();
+    expect(p.text()).toBe("2");
+    wrapper.find("button").props().onClick();
+    expect(p.text()).toBe("3");
+  });
+});
+
+```
