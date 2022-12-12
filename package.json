@@ -1,12 +1,13 @@
 {
   "name": "create-global-context",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "react global context",
   "scripts": {
     "build:rollup": "rollup -c",
     "type": "tsc --noEmit",
     "build": "npm-run-all -s type build:rollup",
-    "test": "jest --verbose ./tests  --watch"
+    "test": "jest --verbose ./tests  --watch",
+    "reset": "rm -r dist"
   },
   "author": "Baghdad Zazai",
   "license": "MIT",
