@@ -17,36 +17,41 @@ const presets = [
   '@babel/preset-react',
   '@babel/preset-typescript',
 ];
-export default {
-  input: 'src/index.tsx',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-    },
-    {
-      file: pkg.module,
-      format: 'esm',
-    },
-    { file: pkg.types, format: 'es' },
-  ],
-  plugins: [
-    commonjs(),
-    resolve({
-      extensions,
-    }),
-    typescript({
-      tsconfigOverride: {
-        exclude: ['__tests__', 'src/**/*.test.ts', 'src/**/*.test.tsx'],
+export default [
+  {
+    input: 'src/index.tsx',
+    output: [
+      {
+        file: pkg.main,
+        format: 'cjs',
       },
-    }),
-    babel({
-      extensions,
-      babelHelpers: 'bundled',
-      presets,
-      exclude: 'node_modules/**',
-    }),
-    dts(),
-  ],
-  external: [...Object.keys(pkg.devDependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
-};
+      {
+        file: pkg.module,
+        format: 'esm',
+      },
+    ],
+    plugins: [
+      commonjs(),
+      resolve({
+        extensions,
+      }),
+      typescript({
+        tsconfigOverride: {
+          exclude: ['__tests__', 'src/**/*.test.ts', 'src/**/*.test.tsx'],
+        },
+      }),
+      babel({
+        extensions,
+        babelHelpers: 'bundled',
+        presets,
+        exclude: 'node_modules/**',
+      }),
+    ],
+    external: [...Object.keys(pkg.devDependencies || {}), ...Object.keys(pkg.peerDependencies || {})],
+  },
+  {
+    input: 'dist/esm/index.d.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+    plugins: [dts()],
+  },
+];
