@@ -27,8 +27,15 @@ export const createGlobalContext = <STATE,>(initState: STATE) => {
     return [store, storeContext.publish] as [ReturnType<typeof selector>, PublishOverloads<STATE>];
   };
 
+  const useSet = () => {
+    const storeContext = useContext(StoreContext);
+    if (!storeContext) throw new Error('No Context store provided');
+    return storeContext.publish as PublishOverloads<STATE>;
+  };
+
   return {
     Provider,
     useStore,
+    useSet,
   };
 };

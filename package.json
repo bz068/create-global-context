@@ -1,6 +1,6 @@
 {
   "name": "create-global-context",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "react global context",
   "scripts": {
     "build:rollup": "rollup -c",
