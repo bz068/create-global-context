@@ -106,6 +106,32 @@ The setStore function returned by useStore hook can be used in `two` ways. First
 <button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
 ```
 
+## Setting to the State
+
+If you have a component which _DOESN'T_ use the store but does set to the store, then you should use the `useSet` hook returned by `createGlobalContext`, this is to avoid the re-render of the component.
+
+```
+const { Provider, useStore, useSet } = createGlobalContext({ name: 'Context', id: 1, count: 1 });
+```
+
+The `useSet` hook returns a function which behaves similar to the setter function returned by `useStore`.
+
+```
+const CountWithSet = () => {
+   const set = useSet();
+   return <button onClick={() => set({ count: 2000 })}>ADD</button>;
+};
+```
+
+You can either invoke the function with partial state like in the example above, or you can set to the store by passing in a callback function which takes the current state as argument which returns the partial state which will be merged with the current state in the store.
+
+```
+const CountWithSet = () => {
+   const set = useSet();
+   return <button onClick={() => set((currentState) => ({ count: currentState.count + 2 }))}>ADD</button>;
+};
+```
+
 ## Avoiding unnecessary re-renders - Selectors
 
 In order to avoid the unnecessary re-renders there is one more step to follow. Quite Simply pass in a `callback` function to the `useStore` hook to get what we want from the store instead of the whole store state itself, which will cause a re-render and we do not want that.

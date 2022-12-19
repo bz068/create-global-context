@@ -22,13 +22,20 @@ export const createGlobalContext = <STATE,>(initState: STATE) => {
 
   const useStore: useStoreOverloads<STATE> = (selector = (state: STATE) => state) => {
     const storeContext = useContext(StoreContext);
-    if (!storeContext) throw new Error('No Context store provided');
+    if (!storeContext) throw new Error('No Context store provided. Did you wrap the App inside the Provider?');
     const store = useSyncExternalStore(storeContext.subscribe, () => selector(storeContext.getState() as STATE));
     return [store, storeContext.publish] as [ReturnType<typeof selector>, PublishOverloads<STATE>];
+  };
+
+  const useSet = () => {
+    const storeContext = useContext(StoreContext);
+    if (!storeContext) throw new Error('No Context store provided. Did you wrap the App inside the Provider?');
+    return storeContext.publish as PublishOverloads<STATE>;
   };
 
   return {
     Provider,
     useStore,
+    useSet,
   };
 };
