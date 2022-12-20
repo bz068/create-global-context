@@ -45,9 +45,12 @@ export const createGlobalContext: CreateGlobalContextOverloads = <STATE, ACTION>
     }
   };
 
+  const useDispatch = () => useSet();
+
   return {
     Provider,
     useStore,
     useSet,
+    useDispatch,
   };
 };
