@@ -106,7 +106,7 @@ The setStore function returned by useStore hook can be used in `two` ways. First
 <button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
 ```
 
-## Setting to the State
+## Updating the Store
 
 If you have a component which _DOESN'T_ use the store but does set to the store, then you should use the `useSet` hook returned by `createGlobalContext`, this is to avoid the re-render of the component.
 
