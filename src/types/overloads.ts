@@ -3,7 +3,7 @@ import { REDUCER } from './types';
 export type CreateGlobalContextOverloads = {
   <T>(initState: T): {
     Provider: ({ children, initialState }: { children: JSX.Element | JSX.Element[]; initialState?: T }) => JSX.Element;
-    useStore: useStoreOverloads<T>;
+    useStore: useStoreWithOutReducerOverloads<T>;
     useSet: () => PublishOverloads<T>;
   };
   <STATE, ACTION>(initState: STATE, reducer: REDUCER<STATE, ACTION>): {
@@ -24,6 +24,11 @@ export type CreateGlobalContextOverloads = {
 export type useStoreOverloads<T, ACTION = undefined> = {
   (): [T, PublishOverloads<T> | ((action: ACTION) => void)];
   <SELECTOR>(selector: (state: T) => SELECTOR): [SELECTOR, PublishOverloads<T> | ((action: ACTION) => void)];
+};
+
+export type useStoreWithOutReducerOverloads<T> = {
+  (): [T, PublishOverloads<T>];
+  <SELECTOR>(selector: (state: T) => SELECTOR): [SELECTOR, PublishOverloads<T>];
 };
 
 export type useStoreReducerOverloads<T, ACTION> = {
