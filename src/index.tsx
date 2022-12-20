@@ -1,12 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { useSyncExternalStore } from 'use-sync-external-store/shim';
-import { PublishOverloads } from './createStore';
+import { PublishOverloads, useStoreOverloads } from './types/overloads';
 import { useStoreData, useStoreDataReturnType } from './useStoreData';
-
-type useStoreOverloads<T> = {
-  (): [T, PublishOverloads<T>];
-  <SELECTOR>(selector: (state: T) => SELECTOR): [SELECTOR, PublishOverloads<T>];
-};
 
 /**
  * The purpose of this function is to create the initial state store, create a Provider component to wrap around all
