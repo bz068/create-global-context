@@ -5,6 +5,7 @@ export type CreateGlobalContextOverloads = {
     Provider: ({ children, initialState }: { children: JSX.Element | JSX.Element[]; initialState?: T }) => JSX.Element;
     useStore: useStoreWithOutReducerOverloads<T>;
     useSet: () => PublishOverloads<T>;
+    useDispatch: () => PublishOverloads<T>;
   };
   <STATE, ACTION>(initState: STATE, reducer: REDUCER<STATE, ACTION>): {
     Provider: ({
@@ -18,6 +19,7 @@ export type CreateGlobalContextOverloads = {
     }) => JSX.Element;
     useStore: useStoreReducerOverloads<STATE, ACTION>;
     useSet: () => (action: ACTION) => void;
+    useDispatch: () => (action: ACTION) => void;
   };
 };
 
