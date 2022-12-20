@@ -1,10 +1,11 @@
 import { PublishOverloads } from './types/overloads';
+import { REDUCER } from './types/types';
 
 /**
  * The purpose of this function is to provide a pub/sub interface to the useStoreData hook.The logic in this function should be able to inform the
  * subscribers of any state change, and also allow consumers to update the state, get the state.
  */
-export const createStore = <STATE>(storeRef: { current: STATE }) => {
+export const createStore = <STATE, ACTION>(storeRef: { current: STATE }, reducer?: REDUCER<STATE, ACTION>) => {
   const subscribers = new Set<(args: STATE) => void>();
 
   const subscribe = (sb: (args: STATE) => void) => {
@@ -18,11 +19,19 @@ export const createStore = <STATE>(storeRef: { current: STATE }) => {
     subscribers.forEach((sb) => sb(storeRef.current));
   };
 
+  const publishToReducer = (action: ACTION) => {
+    if (reducer) {
+      storeRef.current = reducer(storeRef.current, action) as STATE;
+      subscribers.forEach((sb) => sb(storeRef.current));
+    }
+  };
+
   const getState = () => storeRef.current;
 
   return {
     subscribe,
     publish,
     getState,
+    publishToReducer,
   };
 };

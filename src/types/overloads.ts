@@ -4,16 +4,26 @@ export type CreateGlobalContextOverloads = {
   <T>(initState: T): {
     Provider: ({ children, initialState }: { children: JSX.Element | JSX.Element[]; initialState?: T }) => JSX.Element;
     useStore: useStoreOverloads<T>;
+    useSet: () => PublishOverloads<T>;
   };
   <STATE, ACTION>(initState: STATE, reducer: REDUCER<STATE, ACTION>): {
-    Provider: ({ children, initialState }: { children: JSX.Element | JSX.Element[]; initialState?: STATE }) => JSX.Element;
+    Provider: ({
+      children,
+      initialState,
+      initialReducer,
+    }: {
+      children: JSX.Element | JSX.Element[];
+      initialState?: STATE;
+      initialReducer?: REDUCER<STATE, ACTION>;
+    }) => JSX.Element;
     useStore: useStoreReducerOverloads<STATE, ACTION>;
+    useSet: () => (action: ACTION) => void;
   };
 };
 
-export type useStoreOverloads<T> = {
-  (): [T, PublishOverloads<T>];
-  <SELECTOR>(selector: (state: T) => SELECTOR): [SELECTOR, PublishOverloads<T>];
+export type useStoreOverloads<T, ACTION = undefined> = {
+  (): [T, PublishOverloads<T> | ((action: ACTION) => void)];
+  <SELECTOR>(selector: (state: T) => SELECTOR): [SELECTOR, PublishOverloads<T> | ((action: ACTION) => void)];
 };
 
 export type useStoreReducerOverloads<T, ACTION> = {
