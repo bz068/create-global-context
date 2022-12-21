@@ -1,12 +1,12 @@
 {
   "name": "create-global-context",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "react global context",
   "scripts": {
     "build:rollup": "rollup -c",
     "type": "tsc --noEmit",
     "build": "npm-run-all -s type build:rollup",
-    "test": "jest --verbose ./tests  --watch",
+    "test": "jest --watch",
     "reset": "rm -r dist"
   },
   "author": "Baghdad Zazai",
@@ -27,8 +27,10 @@
     "eslint": "^8.26.0",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^27.1.7",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest-runner-eslint": "^1.1.0",
     "rollup": "^2.60.0",
     "rollup-plugin-dts": "^4.0.1",
     "rollup-plugin-typescript2": "^0.34.1",
