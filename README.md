@@ -153,10 +153,10 @@ If you have a component which _DOESN'T_ use the store but does set to the store,
 :warning: It also works with `Reducers`.
 
 ```
-const { Provider, useStore, useSet } = createGlobalContext({ name: 'Context', id: 1, count: 1 });
+const { Provider, useStore, useSet, useDispatch } = createGlobalContext({ name: 'Context', id: 1, count: 1 });
 ```
 
-The `useSet` hook returns a function which behaves similar to the setter function returned by `useStore`.
+The `useSet` and `useDispatch` hook returns a function which behaves similar to the setter function returned by `useStore`.
 
 ```
 const CountWithSet = () => {
@@ -174,7 +174,18 @@ const CountWithSet = () => {
 };
 ```
 
+#### useDispatch
+
+```
+const ChildWithDispatch = () => {
+   const dispatch = useDispatch();
+   return <button onClick={() => dispatch({ type: 'increment' })}>ADD</button>;
+};
+```
+
 With reducer context, it would look like this: `<button onClick={() => set({ type: 'decrement' })}>ADD</button>`
+For more info on reducers see docs/reducer-context.md.
+[Reducer Docs](docs/reducer-context.md)
 
 ## Avoiding unnecessary re-renders - Selectors
 
@@ -186,24 +197,28 @@ By using `selectors` the component will only render if that the piece of state c
 without setter function
 
 ```
+
 const NameComponent = () => {
-  const [name] = useStore((state => state.name))
-  return <div>{name}</div>
+const [name] = useStore((state => state.name))
+return <div>{name}</div>
 }
+
 ```
 
 with setter function
 
 ```
+
 const Count = () => {
-  const [count, setStore] = useStore((state) => state.count)
-  return (
-    <div>
-      <p>{count}</p>
-      <button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
-    </div>
-  )
+const [count, setStore] = useStore((state) => state.count)
+return (
+<div>
+<p>{count}</p>
+<button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
+</div>
+)
 }
+
 ```
 
 ## Useful links
@@ -213,3 +228,7 @@ const Count = () => {
 [TypeScript Example - CodeSandBox](https://codesandbox.io/s/peaceful-noyce-0ddvlh)
 
 [Testing Docs](docs/test.md)
+
+```
+
+```
