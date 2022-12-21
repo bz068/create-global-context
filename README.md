@@ -199,8 +199,8 @@ without setter function
 ```
 
 const NameComponent = () => {
-const [name] = useStore((state => state.name))
-return <div>{name}</div>
+  const [name] = useStore((state => state.name))
+  return <div>{name}</div>
 }
 
 ```
@@ -210,13 +210,13 @@ with setter function
 ```
 
 const Count = () => {
-const [count, setStore] = useStore((state) => state.count)
-return (
-<div>
-<p>{count}</p>
-<button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
-</div>
-)
+  const [count, setStore] = useStore((state) => state.count)
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setStore((currentState) => ({ count: currentState.count + 1 }))}>ADD</button>
+    </div>
+  )
 }
 
 ```
