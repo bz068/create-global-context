@@ -40,15 +40,17 @@ function Counter() {
 
 ## Updating the Store
 
-If you have a component which _DOESN'T_ use the store but does set to the store, then you should use the `useSet` hook returned by `createGlobalContext`, this is to avoid the re-render of the component.
+If you have a component which _DOESN'T_ use the store but does set to the store, then you should use the `useSet` or `useDispatch` hook returned by `createGlobalContext`, this is to avoid the re-renders of the component.
 
 :warning: It also works without `Reducers`.
 
 ```
-const { Provider, useStore, useSet } = createGlobalContext({ name: 'Context', id: 1, count: 1 }, reducer);
+const { ..., useSet, useDispatch } = createGlobalContext({ name: 'Context', id: 1, count: 1 }, reducer);
 ```
 
-The `useSet` hook returns a function which behaves similar to the setter function returned by `useStore`.
+The `useSet` and `useDispatch` both hooks return a function which behaves similar to the setter function returned by `useStore`.
+
+### useSet()
 
 ```
 const CountWithSet = () => {
@@ -57,4 +59,13 @@ const CountWithSet = () => {
 };
 ```
 
-`set` function will take the `action` as a parameter.
+### Or useDispatch()
+
+```
+const ChildWithDispatch = () => {
+   const dispatch = useDispatch();
+   return <button onClick={() => dispatch({ type: 'increment' })}>ADD</button>;
+};
+```
+
+`set` or `dispatch` function will take the `action` as a parameter.
